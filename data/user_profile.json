@@ -1,0 +1,21 @@
+{
+    "user_info": {
+      "name": "Diego Costa",
+      "language": "English"
+    },
+    
+    "professional_context": {
+      "status": "Unemployed, seeking employment",
+      "skills": ["Python", "Automation"],
+      "goal": "Become a Mobile Developer"
+    },
+    
+    "projects": {
+      "active": ["Maddie System - AI with specialized modes", "Apolo Pomodoro - Mobile app"]
+    },
+    
+    "learning_preferences": {
+      "style": "Learning by doing, not receiving ready-made code",
+      "approach": "Amplify skills, don't replace them"
+    }
+  }

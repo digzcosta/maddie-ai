@@ -1,15 +1,19 @@
 from ollama import chat
 from ollama import ChatResponse
 from core.repository import save_message, get_cache_messages, clear_cache
-from core.config import CONTEXT
-from core.prompt import build_system_prompt
+from core.config import CONTEXT, USER_PROFILE
+from core.prompt import format_context, format_user_profile, build_system_prompt
 from core.database import engine, Base
 import core.models
 import uuid
 
 Base.metadata.create_all(engine)
 
-system_prompt = build_system_prompt(CONTEXT)
+user_profile = format_user_profile(USER_PROFILE)
+context = format_context(CONTEXT)
+
+system_prompt = build_system_prompt(context, user_profile)
+
 exit_message = ["/exit", "/quit"]
 
 # Limpando conversas antigas e gerando UUID para uso futuro
@@ -26,7 +30,7 @@ while True:
     
     try:
 
-        cache_history = get_cache_messages(limit=20)
+        cache_history = get_cache_messages(limit=10)
 
         messages = [
             {"role": "system", "content": system_prompt}
