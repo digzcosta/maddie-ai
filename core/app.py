@@ -16,7 +16,6 @@ system_prompt = build_system_prompt(context, user_profile)
 
 exit_message = ["/exit", "/quit"]
 
-# Limpando conversas antigas e gerando UUID para uso futuro
 session_id = str(uuid.uuid4())
 clear_cache()
 

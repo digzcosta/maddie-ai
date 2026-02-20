@@ -51,3 +51,21 @@ def load_history(limit=10):
         .limit(limit)
         .all()
     )
+
+def get_last_turn(current_session_id):
+    messages = session.query(Message)\
+        .filter(Message.session_id == current_session_id)\
+        .order_by(Message.timestamp.desc())\
+        .limit(2)\
+        .all()
+    
+    if len(messages) < 2:
+        return None
+
+    assistant_msg = messages[0]
+    user_msg = messages[1]
+    
+    if user_msg.role != 'user' or assistant_msg.role != 'assistant':
+        return None  
+    
+    return (user_msg, assistant_msg)
